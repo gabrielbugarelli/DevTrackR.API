@@ -12,6 +12,17 @@ public class Package
     this.Updates = new List<PackageUpdate>();
   }
 
+  public void AddUpdate(string status, bool delivered) {
+    if(this.Delivered) {
+      throw new Exception("Package is already delivered!");
+    }
+
+    var update = new PackageUpdate(status, this.Id);
+    Updates.Add(update);
+
+    this.Delivered = delivered;
+  }
+
   public int Id { get; private set; }
   public string Code { get; private set; }
   public string Title { get; private set; }
